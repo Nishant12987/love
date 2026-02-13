@@ -1,0 +1,188 @@
+body {
+  background: linear-gradient(to bottom, #fff0f3, #ffccd5);
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Romantic Breathing Glow */
+body::before {
+  content: "";
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, rgba(255,77,109,0.15), transparent 70%);
+  animation: romanticPulse 8s ease-in-out infinite;
+  z-index: -2;
+}
+
+@keyframes romanticPulse {
+  0%,100% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.2); opacity: 0.9; }
+}
+
+/* Stars */
+.star {
+  position: fixed;
+  width: 3px;
+  height: 3px;
+  background: white;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Wind Drift Background Flowers */
+.bg-flower {
+  position: fixed;
+  bottom: -40px;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.6;
+  animation: floatUp linear forwards;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateX(0px) translateY(0px) rotate(0deg);
+    opacity: 0.7;
+  }
+  25% {
+    transform: translateX(-20px) translateY(-25vh) rotate(90deg);
+  }
+  50% {
+    transform: translateX(20px) translateY(-50vh) rotate(180deg);
+  }
+  75% {
+    transform: translateX(-15px) translateY(-75vh) rotate(270deg);
+  }
+  100% {
+    transform: translateX(10px) translateY(-110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.header { margin-bottom: 50px; }
+
+h1 {
+  color: #ff4d6d;
+  font-size: 2.5rem;
+  text-shadow: 2px 2px white;
+}
+
+#counter {
+  font-weight: bold;
+  color: #800f2f;
+  background: white;
+  padding: 10px 20px;
+  border-radius: 50px;
+  display: inline-block;
+  box-shadow: 0 4px 15px rgba(255, 77, 109, 0.2);
+}
+
+.flower-container {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+
+/* Main Flower Animation */
+.flower {
+  font-size: clamp(60px, 10vw, 90px);
+  cursor: pointer;
+  animation: sway 4s ease-in-out infinite;
+  transition: transform 0.3s ease;
+  will-change: transform;
+}
+
+@keyframes sway {
+  0%,100% { transform: rotate(-8deg) translateY(0px) scale(1); }
+  50% { transform: rotate(8deg) translateY(-10px) scale(1); }
+}
+
+.flower:hover {
+  animation: swayHover 4s ease-in-out infinite;
+}
+
+@keyframes swayHover {
+  0%,100% { transform: rotate(-8deg) translateY(0px) scale(1.3); }
+  50% { transform: rotate(8deg) translateY(-10px) scale(1.3); }
+}
+
+.flower.collected {
+  filter: grayscale(100%) opacity(0.6);
+}
+
+/* Modal */
+#message-box {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  backdrop-filter: blur(5px);
+}
+
+.modal-content {
+  background: white;
+  padding: 25px;
+  border-radius: 30px;
+  max-width: 85%;
+  width: 350px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  border: 5px solid #ff4d6d;
+}
+
+#message-image {
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 20px;
+  margin-bottom: 15px;
+}
+
+#message-text {
+  font-size: 1.1rem;
+  color: #590d22;
+  margin-bottom: 15px;
+  white-space: pre-line;
+}
+
+.hidden { display: none !important; }
+
+button {
+  background: #ff4d6d;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 50px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(255, 77, 109, 0.4);
+}
+
+button:hover {
+  transform: scale(1.05);
+  transition: 0.2s;
+}
+
+/* Confetti */
+@keyframes confettiFall {
+  to {
+    transform: translateY(110vh) rotate(720deg);
+    opacity: 0;
+  }
+}
